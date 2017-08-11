@@ -1,17 +1,17 @@
 FROM node:6.11-alpine
 
-ENV GETH_HOSTNAME "localhost"
-ENV GETH_RPCPORT 8545
+ENV GETH_HOSTNAME="localhost" GETH_RPCPORT=8545
 
 ADD start.sh /start.sh
 
-RUN apk add --update git && \
+RUN apk add --update git python make g++ && \
     npm install -g bower && \
-    git clone https://github.com/provivus/explorer /app
-WORKDIR /app
-
-RUN npm install && \
-    bower --allow-root install
+    git clone https://github.com/provivus/explorer /app && \
+    cd /app && \
+    npm install && \
+    bower --allow-root install && \
+    apk del git python make g++ && \
+    rm rm -rf /var/cache/apk/*
 
 EXPOSE 8000
 
