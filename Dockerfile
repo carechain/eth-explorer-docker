@@ -1,6 +1,6 @@
 FROM node:6.11-alpine
 
-ENV GETH_HOSTNAME="localhost" GETH_RPCPORT=8545
+ENV GETH_HOSTNAME="localhost" GETH_RPCPORT=8545 GETH_PROTOCOL="http"
 
 ADD start.sh /start.sh
 
